@@ -136,14 +136,8 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, using device detection for About page');
-            if (isMobileDevice()) {
-                console.log('📱 Mobile device detected, loading mobile version');
-                window.location.href = 'about/about-mobile.html';
-            } else {
-                console.log('🖥️ Desktop device detected, loading desktop version');
-                window.location.href = 'about/about-desktop.html';
-            }
+            console.log('🔗 Timer complete, navigating to clean About URL');
+            window.location.href = '/about';
         }, 600);
         
         console.log('🎯 Transition sequence setup complete');
@@ -168,14 +162,8 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, using device detection for Work page');
-            if (isMobileDevice()) {
-                console.log('📱 Mobile device detected, loading mobile version');
-                window.location.href = 'work/work-mobile.html';
-            } else {
-                console.log('🖥️ Desktop device detected, loading desktop version');
-                window.location.href = 'work/work-desktop.html';
-            }
+            console.log('🔗 Timer complete, navigating to clean Work URL');
+            window.location.href = '/work';
         }, 600); // Same timing as about page transition
         
         console.log('🎯 Transition sequence setup complete');
@@ -200,14 +188,8 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, using device detection for Photos page');
-            if (isMobileDevice()) {
-                console.log('📱 Mobile device detected, loading mobile version');
-                window.location.href = 'photos/photos-mobile.html';
-            } else {
-                console.log('🖥️ Desktop device detected, loading desktop version');
-                window.location.href = 'photos/photos-desktop.html';
-            }
+            console.log('🔗 Timer complete, navigating to clean Photos URL');
+            window.location.href = '/photos';
         }, 600); // Same timing as other page transitions
         
         console.log('🎯 Transition sequence setup complete');
@@ -232,14 +214,8 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, using device detection for Reel page');
-            if (isMobileDevice()) {
-                console.log('📱 Mobile device detected, loading mobile reel version');
-                window.location.href = 'reel/reel-mobile.html';
-            } else {
-                console.log('🖥️ Desktop device detected, loading desktop reel version');
-                window.location.href = 'reel/reel-desktop.html';
-            }
+            console.log('🔗 Timer complete, navigating to clean Reel URL');
+            window.location.href = '/reel';
         }, 600); // Same timing as other page transitions
         
         console.log('🎯 Reel transition sequence setup complete');
@@ -452,13 +428,7 @@ function navigateToAbout() {
         parallaxTransition.transitionToAbout();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        if (isMobileDevice()) {
-            console.log('📱 Mobile device detected, loading mobile version');
-            window.location.href = 'about/about-mobile.html';
-        } else {
-            console.log('🖥️ Desktop device detected, loading desktop version');
-            window.location.href = 'about/about-desktop.html';
-        }
+        window.location.href = '/about';
     }
 }
 
@@ -470,13 +440,7 @@ function navigateToWork() {
         parallaxTransition.transitionToWork();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        if (isMobileDevice()) {
-            console.log('📱 Mobile device detected, loading mobile version');
-            window.location.href = 'work/work-mobile.html';
-        } else {
-            console.log('🖥️ Desktop device detected, loading desktop version');
-            window.location.href = 'work/work-desktop.html';
-        }
+        window.location.href = '/work';
     }
 }
 
@@ -488,13 +452,7 @@ function navigateToPhotos() {
         parallaxTransition.transitionToPhotos();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        if (isMobileDevice()) {
-            console.log('📱 Mobile device detected, loading mobile version');
-            window.location.href = 'photos/photos-mobile.html';
-        } else {
-            console.log('🖥️ Desktop device detected, loading desktop version');
-            window.location.href = 'photos/photos-desktop.html';
-        }
+        window.location.href = '/photos';
     }
 }
 
@@ -506,13 +464,7 @@ function navigateToReel() {
         parallaxTransition.transitionToReel();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        if (isMobileDevice()) {
-            console.log('📱 Mobile device detected, loading mobile reel version');
-            window.location.href = 'reel/reel-mobile.html';
-        } else {
-            console.log('🖥️ Desktop device detected, loading desktop reel version');
-            window.location.href = 'reel/reel-desktop.html';
-        }
+        window.location.href = '/reel';
     }
 }
 
