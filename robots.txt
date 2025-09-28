@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap (you can add this later when you create one)
+# Sitemap: https://ryanbgates.com/sitemap.xml
+
+# Allow search engines to index your actor portfolio
+# This helps with discoverability for casting directors

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ryan B. Gates - Actor</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about Ryan B. Gates, a professional actor from Texas. Born in 2000, Ryan has appeared in films, commercials, and TV shows including work with Academy Award-nominee Eric Roberts.">
+    <meta name="keywords" content="Ryan B Gates, actor biography, Texas actor, about Ryan Gates, actor background">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://ryanbgates.com/about/">
+    <meta property="og:title" content="About Ryan B. Gates - Professional Actor">
+    <meta property="og:description" content="Learn about Ryan B. Gates, a professional actor from Texas with experience in film, television, and commercials.">
+    <meta property="og:image" content="https://ryanbgates.com/ryanbgates.com headshots/Headshot 2.JPG">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="About Ryan B. Gates - Professional Actor">
+    <meta property="twitter:description" content="Learn about Ryan B. Gates, a professional actor from Texas.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    
+    <link rel="stylesheet" href="about-mobile.css">
+</head>
+<body>
+    <div class="about-page-container">
+        <!-- Header Section -->
+        <header class="about-page-header">
+            <button onclick="fadeToHome()" class="back-button">
+                ←
+            </button>
+            <h1 class="about-page-title">About Ryan</h1>
+            <div class="header-spacer"></div>
+        </header>
+        
+        <!-- Main Article Content -->
+        <main class="about-main-content">
+            <!-- Actor Measurements -->
+            <div class="actor-measurements">
+                <div class="measurements-content">
+                    <p class="physical-stats">Height: 5'9 | Weight: 165 | Hair: Black | Eyes: Brown</p>
+                    <p class="age-stats">Age: 24 | Can play: 16-30</p>
+                </div>
+            </div>
+            
+            <article class="about-article">
+                <!-- Article Content -->
+                <div class="article-content">
+                
+                <!-- Featured Headshot floated left -->
+                <img src="../ryanbgates.com headshots/Headshot 2.JPG" alt="Ryan B. Gates" class="featured-headshot-float">
+                
+                <p>Ryan B. Gates is an American actor who was born on November 14, 2000, in Plano, Texas. From an early age, he discovered a love for entertaining and storytelling. Every Christmas brought a new magic set, and by New Year's he would be ready to perform a full magic show for his family — sparking a lifelong passion for performance. Around the same time, Ryan became fascinated with filmmaking, often directing and editing short films on iMovie with his siblings and cousins. Those early projects, shared with friends and family, lit the spark that would later grow into a professional acting career.</p>
+                
+                <p>Although sports became a focus during his teenage years, Ryan's passion for film and acting never left him. In high school, he enrolled in his first acting class at KD Conservatory in Dallas, often heading straight there after football practice. From the moment he stepped into that class, he was hooked and knew he had found his true calling.</p>
+                
+                <p>After graduating in 2019, Ryan continued his training at John Casablancas while the world faced the challenges of COVID-19. Determined not to let obstacles slow him down, he began actively seeking acting work. His very first audition landed him a role on the popular YouTube reality show Bounty Hunter D. Not only did he appear on the show, but his connection with the director earned him a role behind the camera as a cameraman, allowing him to gain valuable on-set experience and industry relationships.</p>
+                
+                <p>That opportunity opened doors. Ryan soon appeared on Vid Chronicles, a viral YouTube series known for portraying real-life scenarios with meaningful messages. His episode, "Black Student Calls Out Racist Teacher, Watch What Happens Next," spread widely across YouTube and TikTok, drawing national attention. This breakout moment helped him secure representation with Icon Studios, a respected talent agency in Dallas.</p>
+                
+                <p>Since then, Ryan has built an impressive and growing résumé across short films, feature films, national commercials. Among his credits are lead roles in Good Deed Gone Bad (directed by Jeff FX) and Towpath (directed by Paul Sinacore and starring Academy Award-nominee Eric Roberts). He has also appeared in major commercial campaigns, including spots for the NFL/Paramount Plus and Ryder, the southern trucking company.</p>
+                
+                <p>Ryan continues to hone his craft, driven by the same passion that fueled his childhood magic shows and iMovie films. With a natural screen presence, a strong work ethic, and a diverse list of credits, he is committed to building a long, impactful career in the entertainment industry. For Ryan, this is only the beginning.</p>
+                </div>
+            </article>
+        </main>
+    </div>
+    
+    <script>
+        function fadeToHome() {
+            console.log('Fade to home triggered');
+            
+            // Create a fade overlay
+            const fadeOverlay = document.createElement('div');
+            fadeOverlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: #000;
+                opacity: 0;
+                z-index: 9999;
+                transition: opacity 0.5s ease-out;
+                pointer-events: none;
+            `;
+            
+            document.body.appendChild(fadeOverlay);
+            
+            // Trigger fade out
+            setTimeout(() => {
+                fadeOverlay.style.opacity = '1';
+            }, 10);
+            
+            // Navigate after fade completes
+            setTimeout(() => {
+                console.log('Navigating to home');
+                window.location.href = '../index.html';
+            }, 500);
+        }
+    </script>
+</body>
+</html>
