@@ -169,7 +169,10 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     float: left;
-    margin: 0 18px 12px 0;
+    margin: 18px 18px 0 0;
+    transform: none;
+    transition: none;
+    display: block;
 }
 
 .article-content p {
@@ -178,6 +181,10 @@ body {
     margin-bottom: 15px;
     color: rgba(255, 255, 255, 0.9);
     text-align: left;
+}
+
+.article-content p:first-of-type {
+    margin-top: 0;
 }
 
 /* Custom Scrollbar Styling - Matching Work Page */

@@ -17,41 +17,8 @@ function initializeMarquees() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Ryan B. Gates Portfolio Loading...');
     
-    // Immediately hide body content to prevent flash
-    // Using class-based approach so about page isn't affected
-    
-    // Always add fade in effect for home page
-    console.log('🔄 Adding fade in effect for home page load');
-    
-    // Create fade overlay that starts opaque and fades out
-    const fadeOverlay = document.createElement('div');
-    fadeOverlay.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: #000;
-        opacity: 1;
-        z-index: 10000;
-        transition: opacity 0.6s ease-in;
-        pointer-events: none;
-    `;
-    
-    document.body.appendChild(fadeOverlay);
-    
-    // Remove the loading class to make body visible (but overlay covers it)
-    document.body.classList.remove('home-page-loading');
-    
-    // Fade in the home page after ensuring everything is ready
-    setTimeout(() => {
-        fadeOverlay.style.opacity = '0';
-        setTimeout(() => {
-            if (document.body.contains(fadeOverlay)) {
-                document.body.removeChild(fadeOverlay);
-            }
-        }, 600);
-    }, 100); // Shorter delay but more reliable
+    // Initialize loading sequence
+    initializePageLoad();
     
     // Force fresh page state - reset any transition classes that might persist
     console.log('🔄 Resetting page to clean state...');
@@ -87,6 +54,85 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('✅ Portfolio loaded and ready!');
 });
+
+// New function to handle the loading sequence
+function initializePageLoad() {
+    console.log('🎬 Initializing page load sequence...');
+    
+    const pageLoader = document.querySelector('.page-loader');
+    
+    if (!pageLoader) {
+        console.error('❌ Page loader not found!');
+        // Fallback: show content immediately if loader is missing
+        document.body.classList.add('content-ready');
+        return;
+    }
+    
+    // Ensure all images are loaded before showing content
+    const allImages = document.querySelectorAll('img');
+    const headshots = document.querySelectorAll('.headshot');
+    
+    let loadedImages = 0;
+    const totalImages = allImages.length;
+    
+    console.log(`📸 Loading ${totalImages} images...`);
+    
+    // Function to check if all images are loaded
+    function checkAllImagesLoaded() {
+        loadedImages++;
+        console.log(`📸 Loaded ${loadedImages}/${totalImages} images`);
+        
+        if (loadedImages >= totalImages) {
+            console.log('✅ All images loaded, starting fade sequence...');
+            startFadeSequence();
+        }
+    }
+    
+    // Add load listeners to all images
+    allImages.forEach((img, index) => {
+        if (img.complete) {
+            // Image already loaded
+            checkAllImagesLoaded();
+        } else {
+            // Wait for image to load
+            img.addEventListener('load', checkAllImagesLoaded);
+            img.addEventListener('error', () => {
+                console.warn(`⚠️ Image ${index} failed to load: ${img.src}`);
+                checkAllImagesLoaded(); // Count failed images as "loaded" to prevent hanging
+            });
+        }
+    });
+    
+    // Fallback timeout in case some images take too long
+    setTimeout(() => {
+        if (loadedImages < totalImages) {
+            console.log(`⏰ Timeout reached, showing content anyway (${loadedImages}/${totalImages} loaded)`);
+            startFadeSequence();
+        }
+    }, 3000); // 3 second maximum wait
+    
+    function startFadeSequence() {
+        console.log('🎭 Starting fade sequence...');
+        
+        // Remove loading class from body and make content ready
+        document.body.classList.remove('home-page-loading');
+        document.body.classList.add('content-ready');
+        
+        // Wait a moment to ensure everything is rendered
+        setTimeout(() => {
+            // Fade out the loader
+            pageLoader.classList.add('fade-out');
+            
+            // Remove the loader after animation completes
+            setTimeout(() => {
+                if (document.body.contains(pageLoader)) {
+                    document.body.removeChild(pageLoader);
+                }
+                console.log('✅ Loading complete - portfolio ready!');
+            }, 1000); // Wait longer than CSS transition duration for smooth completion
+        }, 200); // Short delay to ensure content is ready
+    }
+}
 
 // ========== BROWSER BACK BUTTON HANDLING ==========
 // Handle browser back button to ensure fresh page state
@@ -136,8 +182,9 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, navigating to clean About URL');
-            window.location.href = '/about';
+            const aboutPath = getNavigationPath('about');
+            console.log('🔗 Timer complete, navigating to About URL:', aboutPath);
+            window.location.href = aboutPath;
         }, 600);
         
         console.log('🎯 Transition sequence setup complete');
@@ -162,8 +209,9 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, navigating to clean Work URL');
-            window.location.href = '/work';
+            const workPath = getNavigationPath('work');
+            console.log('🔗 Timer complete, navigating to Work URL:', workPath);
+            window.location.href = workPath;
         }, 600); // Same timing as about page transition
         
         console.log('🎯 Transition sequence setup complete');
@@ -188,8 +236,9 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, navigating to clean Photos URL');
-            window.location.href = '/photos';
+            const photosPath = getNavigationPath('photos');
+            console.log('🔗 Timer complete, navigating to Photos URL:', photosPath);
+            window.location.href = photosPath;
         }, 600); // Same timing as other page transitions
         
         console.log('🎯 Transition sequence setup complete');
@@ -214,8 +263,9 @@ class ParallaxTransition {
         
         console.log('⏱️ Starting 600ms timer before navigation...');
         setTimeout(() => {
-            console.log('🔗 Timer complete, navigating to clean Reel URL');
-            window.location.href = '/reel';
+            const reelPath = getNavigationPath('reel');
+            console.log('🔗 Timer complete, navigating to Reel URL:', reelPath);
+            window.location.href = reelPath;
         }, 600); // Same timing as other page transitions
         
         console.log('🎯 Reel transition sequence setup complete');
@@ -420,6 +470,33 @@ function isMobileDevice() {
     return isMobileUserAgent || (isSmallScreen && isTouchDevice);
 }
 
+// Detect if we're running locally vs production
+function isLocalDevelopment() {
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    
+    // Local development indicators
+    return hostname === 'localhost' || 
+           hostname === '127.0.0.1' || 
+           hostname === '0.0.0.0' ||
+           port === '8000' || 
+           port === '3000' || 
+           port === '5000';
+}
+
+// Get the appropriate path for navigation based on environment and device
+function getNavigationPath(section) {
+    if (isLocalDevelopment()) {
+        // Local development - use direct file paths
+        const isMobile = isMobileDevice();
+        const suffix = isMobile ? '-mobile.html' : '-desktop.html';
+        return `${section}/${section}${suffix}`;
+    } else {
+        // Production - use clean URLs (Nginx handles the routing)
+        return `/${section}`;
+    }
+}
+
 function navigateToAbout() {
     console.log('🧭 Navigating to About page with parallax transition...');
     
@@ -428,7 +505,9 @@ function navigateToAbout() {
         parallaxTransition.transitionToAbout();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        window.location.href = '/about';
+        const aboutPath = getNavigationPath('about');
+        console.log('🔗 Using path:', aboutPath);
+        window.location.href = aboutPath;
     }
 }
 
@@ -440,7 +519,9 @@ function navigateToWork() {
         parallaxTransition.transitionToWork();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        window.location.href = '/work';
+        const workPath = getNavigationPath('work');
+        console.log('🔗 Using path:', workPath);
+        window.location.href = workPath;
     }
 }
 
@@ -452,7 +533,9 @@ function navigateToPhotos() {
         parallaxTransition.transitionToPhotos();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        window.location.href = '/photos';
+        const photosPath = getNavigationPath('photos');
+        console.log('🔗 Using path:', photosPath);
+        window.location.href = photosPath;
     }
 }
 
@@ -464,7 +547,9 @@ function navigateToReel() {
         parallaxTransition.transitionToReel();
     } else {
         console.error('❌ ParallaxTransition not available, direct navigation');
-        window.location.href = '/reel';
+        const reelPath = getNavigationPath('reel');
+        console.log('🔗 Using path:', reelPath);
+        window.location.href = reelPath;
     }
 }
 
