@@ -98,15 +98,16 @@ body {
 }
 
 .about-main-content {
-    max-width: 920px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 30px 40px;
     text-align: left;
 }
 
 /* Actor Measurements Section */
 .actor-measurements {
-    margin-bottom: 30px;
+    max-width: 920px;
+    margin: 0 auto 30px auto;
     padding: 20px;
     background: rgba(255, 255, 255, 0.02);
     border-radius: 8px;
