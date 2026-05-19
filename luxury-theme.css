@@ -261,15 +261,15 @@ body > * {
 
     @keyframes slideRightMobile {
         0% { transform: translate3d(calc(-1 * var(--mobile-marquee-distance)), 0, 0); opacity: 0; }
-        1% { opacity: 1; }
-        99% { opacity: 1; }
+        2% { opacity: 1; }
+        98% { opacity: 1; }
         100% { transform: translate3d(0%, 0, 0); opacity: 0; }
     }
 
     @keyframes slideLeftMobile {
         0% { transform: translate3d(0%, 0, 0); opacity: 0; }
-        1% { opacity: 1; }
-        99% { opacity: 1; }
+        2% { opacity: 1; }
+        98% { opacity: 1; }
         100% { transform: translate3d(calc(-1 * var(--mobile-marquee-distance)), 0, 0); opacity: 0; }
     }
 
@@ -794,7 +794,11 @@ body > * {
     }
 
     .work-page-title {
-        font-size: 1.8em;
+        max-width: calc(100vw - 150px);
+        font-size: clamp(1.05rem, 5.4vw, 1.65rem);
+        letter-spacing: clamp(0.08em, 1.4vw, 0.15em);
+        line-height: 1.08;
+        white-space: nowrap;
     }
 
     .work-page-header {
@@ -895,6 +899,57 @@ body > * {
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
         padding: 22px;
+    }
+
+    .contact-header {
+        min-height: 42px;
+        padding: 0 52px;
+        margin-bottom: 18px;
+        justify-content: center;
+        position: relative;
+    }
+
+    .contact-header h2,
+    .contact-card h2 {
+        max-width: 100%;
+        margin: 0 !important;
+        font-size: clamp(1.05rem, 5vw, 1.28rem) !important;
+        line-height: 1.1;
+        white-space: normal;
+        text-align: center;
+    }
+
+    .contact-header h2 {
+        font-size: 0 !important;
+    }
+
+    .contact-header h2::after {
+        content: "Contact";
+        display: inline-block;
+        font-size: clamp(1.05rem, 5vw, 1.28rem);
+        line-height: 1.1;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .close-contact {
+        top: 0 !important;
+        right: 0 !important;
+        width: 38px !important;
+        height: 38px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        font-size: 24px !important;
+        line-height: 1 !important;
+        background: rgba(10, 14, 24, 0.86) !important;
+        border: 1px solid rgba(88, 116, 180, 0.26) !important;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28) !important;
+        color: var(--lux-text) !important;
     }
 
     .back-button {
